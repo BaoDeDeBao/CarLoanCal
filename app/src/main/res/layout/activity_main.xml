@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Car Loan Calculator"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTextCarPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/car_price"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextDP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/downpayment"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextLP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/loan_period"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextIR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/interest_rate"
+        android:inputType="number|numberDecimal" />
+
+    <TextView
+        android:id="@+id/textViewLoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/loan"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewInterest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/interest"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewMR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/monthly_repayment"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/buttonCal"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:text="@string/reset"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
