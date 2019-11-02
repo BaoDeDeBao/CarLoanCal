@@ -3,7 +3,10 @@ package com.example.carloancal
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.webkit.RenderProcessGoneDetail
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,46 +24,49 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateLoan(view: View) {
-        val car_price = editTextCarPrice.text.toString().toInt()
-        val down_payment = editTextDP.text.toString().toInt()
-        val loan_period = editTextLP.text.toString().toInt()
-        val interest_rate = editTextIR.text.toString().toFloat()
+        val imageViewStatus = findViewById<ImageView>(R.id.imageViewStatus)
+        val weight = editTextWeight.text.toString().toDouble()
+        val height = editTextHeight.text.toString().toDouble()
+        val textViewValue = findViewById<TextView>(R.id.textViewValue)
+        val textViewStatus = findViewById<TextView>(R.id.textViewStatus)
 
-        val loan = car_price - down_payment
-        val interest = loan * (interest_rate/100) * loan_period
-        val monthly_repayment = (loan + interest) / loan_period / 12
+        val value = weight/Math.sqrt(height)
 
-        val textViewLoan = findViewById<TextView>(R.id.textViewLoan)
-        textViewLoan.text = getString(R.string.loan) + ": " + loan.toString() // loan must be convert to string if adding it to text view
+        if(value < 18.5) {
+            textViewValue.text = getString(R.string.value) + ": ${value}"
+            textViewStatus.text = getString(R.string.status) + ": Underweight"
+            imageViewStatus.setImageResource(R.drawable.underweight)
+            imageViewStatus.visibility = View.VISIBLE
+        }
+        else if(value < 24.9) {
+            textViewValue.text = getString(R.string.value) + ": ${value}"
+            textViewStatus.text = getString(R.string.status) + ": Normal"
+            imageViewStatus.setImageResource(R.drawable.normal)
+            imageViewStatus.visibility = View.VISIBLE
+        }
+        else if(value >= 25.0) {
+            textViewValue.text = getString(R.string.value) + ": ${value}"
+            textViewStatus.text = getString(R.string.status) + ": Overweight"
+            imageViewStatus.setImageResource(R.drawable.overweight)
+            imageViewStatus.visibility = View.VISIBLE
+        }
 
-        val textViewInterest = findViewById<TextView>(R.id.textViewInterest)
-        textViewInterest.text = getString(R.string.interest) + ": ${interest}" //R.string.interest - Retreiving interest from resource
-
-        val textViewMonthlyRepayment = findViewById<TextView>(R.id.textViewMR)
-        textViewMonthlyRepayment.text = getString(R.string.monthly_repayment) + ": " + monthly_repayment.toString()
 
     }
 
     private fun resetInput(view: View) {
-        val editTextCP = findViewById<TextView>(R.id.editTextCarPrice)
-        editTextCP.text = ""
+        val editTextWeight = findViewById<EditText>(R.id.editTextWeight)
+        editTextWeight.setText("")
 
-        val editTextDP = findViewById<TextView>(R.id.editTextDP)
-        editTextDP.text = ""
+        val editTextHeight = findViewById<EditText>(R.id.editTextHeight)
+        editTextHeight.setText("")
 
-        val editTextLP = findViewById<TextView>(R.id.editTextLP)
-        editTextLP.text = ""
+        val textViewValue = findViewById<TextView>(R.id.textViewValue)
+        textViewValue.text = ""
 
-        val editTextIR = findViewById<TextView>(R.id.editTextIR)
-        editTextIR.text = ""
+        val textViewStatus = findViewById<TextView>(R.id.textViewStatus)
+        textViewStatus.text = ""
 
-        val textViewLoan = findViewById<TextView>(R.id.textViewLoan)
-        textViewLoan.text = ""
-
-        val textViewInterest = findViewById<TextView>(R.id.textViewInterest)
-        textViewInterest.text = ""
-
-        val textViewMonthlyRepayment = findViewById<TextView>(R.id.textViewMR)
-        textViewMonthlyRepayment.text = ""
+        imageViewStatus.visibility = View.INVISIBLE
     }
 }
