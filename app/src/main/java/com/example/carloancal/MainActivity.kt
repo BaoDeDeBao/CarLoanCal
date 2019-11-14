@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,27 +31,26 @@ class MainActivity : AppCompatActivity() {
         val textViewValue = findViewById<TextView>(R.id.textViewValue)
         val textViewStatus = findViewById<TextView>(R.id.textViewStatus)
 
-        val value = weight/Math.sqrt(height)
+        val value = weight/ (height * height)
 
-        if(value < 18.5) {
-            textViewValue.text = getString(R.string.value) + ": ${value}"
-            textViewStatus.text = getString(R.string.status) + ": Underweight"
-            imageViewStatus.setImageResource(R.drawable.underweight)
-            imageViewStatus.visibility = View.VISIBLE
-        }
-        else if(value < 24.9) {
-            textViewValue.text = getString(R.string.value) + ": ${value}"
-            textViewStatus.text = getString(R.string.status) + ": Normal"
-            imageViewStatus.setImageResource(R.drawable.normal)
-            imageViewStatus.visibility = View.VISIBLE
-        }
-        else if(value >= 25.0) {
-            textViewValue.text = getString(R.string.value) + ": ${value}"
-            textViewStatus.text = getString(R.string.status) + ": Overweight"
-            imageViewStatus.setImageResource(R.drawable.overweight)
-            imageViewStatus.visibility = View.VISIBLE
-        }
-
+                if(value < 18.5) {
+                    textViewValue.text = String.format("%s %.2f", getString(R.string.value), value)
+                    textViewStatus.text = getString(R.string.status) + ": Underweight"
+                    imageViewStatus.setImageResource(R.drawable.underweight)
+                    imageViewStatus.visibility = View.VISIBLE
+                }
+                else if(value < 24.9) {
+                    textViewValue.text = String.format("%s %.2f", getString(R.string.value), value)
+                    textViewStatus.text = getString(R.string.status) + ": Normal"
+                    imageViewStatus.setImageResource(R.drawable.normal)
+                    imageViewStatus.visibility = View.VISIBLE
+                }
+                else if(value >= 25.0) {
+                    textViewValue.text = String.format("%s %.2f", getString(R.string.value), value)
+                    textViewStatus.text = getString(R.string.status) + ": Overweight"
+                    imageViewStatus.setImageResource(R.drawable.overweight)
+                    imageViewStatus.visibility = View.VISIBLE
+                }
 
     }
 
